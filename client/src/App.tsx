@@ -8,7 +8,7 @@ function App() {
 
   return (
     <>
-      <Button>iuyjthgr</Button>
+      <Button className='bg-blue-800 hover:bg-blue-300'>iuyjthgr</Button>
     </>
   )
 }

@@ -55,3 +55,4 @@ npm create vite@latest
 7.npx shadcn@latest init
    slate 
 8.npx shadcn@latest add button
+9.npx tailwindcss init -p
