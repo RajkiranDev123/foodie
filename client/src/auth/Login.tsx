@@ -1,56 +1,115 @@
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-// import { Label } from '@/components/ui/label'
-import { LockKeyhole, Mail, Loader2 } from 'lucide-react'
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+
+import { LoginInputState, userLoginSchema } from "@/schema/userSchema";
+// import { useUserStore } from "@/store/useUserStore";
+import { Loader2, LockKeyhole, Mail } from "lucide-react";
+import { ChangeEvent, FormEvent, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
+    const [input, setInput] = useState<LoginInputState>({
+        email: "",
+        password: "",
+    });
+    const [errors, setErrors] = useState<Partial<LoginInputState>>({});
+    //   const { loading, login } = useUserStore();
     const [loading, setLoading] = useState(false)
+    const navigate = useNavigate();
+
+    const changeEventHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setInput({ ...input, [name]: value });
+    };
+    const loginSubmitHandler = async (e: FormEvent) => {
+        e.preventDefault();
+        const result = userLoginSchema.safeParse(input);
+        if (!result.success) {
+            const fieldErrors = result.error.formErrors.fieldErrors;
+            setErrors(fieldErrors as Partial<LoginInputState>);
+            return;
+        }
+        try {
+            //   await login(input);
+            //   navigate("/");
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     return (
-        <div className='min-h-screen flex justify-center items-center'>
-            {/* w x h , md: w>=768 , max-w-md : content will shrink below 768px */}
-            <form className='md:p-5 w-full max-w-md md:border border-gray-200 rounded-lg mx-4'>
-                <div className='mb-4'>
-                    <h1 className='font-bold text-2xl text-gray-700 '>Foodie Spot!</h1>
+        <div className="flex items-center justify-center min-h-screen">
+            <form
+                onSubmit={loginSubmitHandler}
+                className="md:p-8 w-full max-w-md rounded-lg md:border border-gray-200 mx-4"
+            >
+                <div className="mb-4">
+                    <h1 className="font-bold text-2xl text-gray-700">Food spot!</h1>
                 </div>
-                <div className='relative mb-4'>
-                    {/* <Label>Email</Label> */}
-                    <Input
-                        className='pl-8 focus-visible:ring-1'
-                        type='email'
-                        placeholder='Email'
-                    />
-                    <Mail className='absolute inset-y-2 left-2 text-gray-500 pointer-events-none' />
+                <div className="mb-4">
+                    <div className="relative">
+                        <Input
+                            type="email"
+                            placeholder="Email"
+                            name="email"
+                            value={input.email}
+                            onChange={changeEventHandler}
+                            className="pl-10 focus-visible:ring-1"
+                        />
+                        <Mail className="absolute inset-y-2 left-2 text-gray-500 pointer-events-none" />
+                        {errors && (
+                            <span className="text-xs text-red-500">{errors.email}</span>
+                        )}
+                    </div>
+                </div>
+                <div className="mb-4">
+                    <div className="relative">
+                        <Input
+                            type="password"
+                            placeholder="Password"
+                            name="password"
+                            value={input.password}
+                            onChange={changeEventHandler}
+                            className="pl-10 focus-visible:ring-1"
+                        />
+                        <LockKeyhole className="absolute inset-y-2 left-2 text-gray-500 pointer-events-none" />
+                        {errors && (
+                            <span className="text-xs text-red-500">{errors.password}</span>
+                        )}
+                    </div>
+                </div>
+                <div className="mb-10">
+                    {loading ? (
+                        <Button disabled className="w-full bg-orange hover:bg-hoverOrange">
+                            <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait
+                        </Button>
+                    ) : (
+                        <Button
+                            type="submit"
+                            className="w-full bg-blue-700 hover:bg-blue-600"
+                        >
+                            Login
+                        </Button>
+                    )}
+                    <div className="mt-4">
+                        <Link
+                            to="/forgot-password"
+                            className="hover:text-blue-500 hover:underline"
+                        >
+                            Forgot Password
+                        </Link>
+                    </div>
                 </div>
 
-                <div className='relative'>
-                    {/* <Label>Password</Label> */}
-                    <Input
-                        className='pl-8 focus-visible:ring-1'
-                        type='password'
-                        placeholder='Password'
-                    />
-                    <LockKeyhole className='absolute inset-y-2 left-2 text-gray-500 pointer-events-none' />
-                </div>
-
-                <Button className='mt-4 w-full bg-blue-700 cursor-pointer hover:bg-blue-600 '>
-                    {loading ? <Loader2 className='animate-spin' /> : "Login"}
-                </Button>
-
-                <p className='mt-1'>
-                    Don't have an account?
-                    <Link className='text-blue-700 ml-1' to="/signup">Register</Link>
+                <p className="mt-2">
+                    Don't have an account?{" "}
+                    <Link to="/signup" className="text-blue-500">
+                        Signup
+                    </Link>
                 </p>
-
-
-
-
             </form>
-
         </div>
-    )
-}
+    );
+};
 
-export default Login
+export default Login;

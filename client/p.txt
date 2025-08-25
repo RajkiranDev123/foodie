@@ -59,3 +59,4 @@ npm create vite@latest
 10.npx shadcn@latest add input
 
 npm i react-router-dom
+npm i zod
