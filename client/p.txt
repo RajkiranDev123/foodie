@@ -56,3 +56,6 @@ npm create vite@latest
    slate 
 8.npx shadcn@latest add button
 9.npx tailwindcss init -p
+10.npx shadcn@latest add input
+
+npm i react-router-dom
