@@ -1,0 +1,57 @@
+npm create vite@latest
+
+◇  Project name:
+│  .
+│
+◇  Current directory is not empty. Please choose how to proceed:
+│  Ignore files and continue
+│
+◇  Select a framework:
+│  React
+│
+◇  Select a variant:
+│  TypeScript
+│
+◇  Scaffolding project in D:\food\client...
+│
+└  Done. Now run:
+
+  npm install
+  npm run dev
+  
+
+
+  shadcn :
+  1. npm install tailwindcss @tailwindcss/vite
+  2. @import "tailwindcss";
+  3. "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+  4."baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+  5.npm install -D @types/node
+  6.import path from "path"
+    import tailwindcss from "@tailwindcss/vite"
+    import react from "@vitejs/plugin-react"
+    import { defineConfig } from "vite"
+
+    // https://vite.dev/config/
+    export default defineConfig({
+    plugins: [react(), tailwindcss()],
+    resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+    },
+    })
+
+7.npx shadcn@latest init
+   slate 
+8.npx shadcn@latest add button
