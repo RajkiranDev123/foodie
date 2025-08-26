@@ -28,7 +28,7 @@ const HeroSection = () => {
       </div>
 
       <div>
-        <img src={chow} alt='food' className='object-cover w-full max-h-[500px] rounded-[90%] ' />
+        <img src={chow} alt='food' className='object-cover w-full max-h-[300px] rounded-3xl' />
       </div>
 
     </div>

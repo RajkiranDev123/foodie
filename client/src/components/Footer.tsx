@@ -1,13 +1,11 @@
-import React from 'react'
-
-type Props = {}
-
-const Footer = (props: Props) => {
+const Footer = () => {
   return (
-    <div className=''>
+    <footer className="bg-black text-center text-gray-300 py-3 px-4">
+      <p className="text-sm">
+        &copy; 2025 Foodie Corner. All rights reserved.
+      </p>
+    </footer>
+  );
+};
 
-    </div>
-  )
-}
-
-export default Footer
+export default Footer;
