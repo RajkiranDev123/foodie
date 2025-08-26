@@ -3,10 +3,12 @@ import { Input } from './ui/input'
 import { Search } from 'lucide-react'
 import { Button } from './ui/button'
 import chow from "@/assets/chow.png"
+import { useNavigate } from 'react-router-dom'
 
 
 const HeroSection = () => {
   const [searchText, setSearchText] = useState<string>("")
+  const navigate=useNavigate()
   return (
     // mx-auto : parent adjusts , justify-center : children 
     <div className='flex flex-col md:flex-row max-w-7xl mx-auto md:p-10 rounded-lg items-center justify-center m-4 gap-20'>
@@ -22,7 +24,7 @@ const HeroSection = () => {
           <Input className='pl-10 shadow-lg' type='text' value={searchText}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchText(e.target.value)} />
           <Search className='text-gray-500 absolute inset-y-2 left-2' />
-          <Button className='bg-blue-700 hover:bg-blue-600'>Search</Button>
+          <Button onClick={()=>navigate(`/search/${searchText}`)} className='bg-blue-700 hover:bg-blue-600'>Search</Button>
         </div>
 
       </div>
