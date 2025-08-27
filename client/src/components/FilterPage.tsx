@@ -1,8 +1,6 @@
-import React from 'react'
 
-type Props = {}
 
-const FilterPage = (props: Props) => {
+const FilterPage = () => {
   return (
     <div>FilterPage</div>
   )
