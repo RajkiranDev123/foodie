@@ -32,7 +32,7 @@ const Navbar = () => {
             <Link to="/profile">Profile</Link>
             <Link to="/order/status">Order</Link>
 
-            {user?.admin && (
+            {/* {user?.admin && ( */}
               <Menubar>
                 <MenubarMenu>
                   <MenubarTrigger>Dashboard</MenubarTrigger>
@@ -49,7 +49,7 @@ const Navbar = () => {
                   </MenubarContent>
                 </MenubarMenu>
               </Menubar>
-            )}
+            {/* )} */}
           </div>
           <div className="flex items-center gap-4">
             <div>
@@ -179,7 +179,7 @@ const MobileNavbar = () => {
             <span>Cart (0)</span>
           </Link>
           
-          {user?.admin && (
+          {/* {user?.admin && ( */}
             <>
               <Link
                 to="/admin/menu"
@@ -203,7 +203,7 @@ const MobileNavbar = () => {
                 <span>Restaurant Orders</span>
               </Link>
             </>
-          )}
+          {/* )} */}
         </SheetDescription>
 
         <SheetFooter className="flex flex-col gap-4">
