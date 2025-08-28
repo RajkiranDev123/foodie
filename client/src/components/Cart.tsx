@@ -60,10 +60,10 @@ const Cart = (props: Props) => {
 
         <TableFooter>
           <TableRow>
-            <TableCell colSpan={5}>
+            <TableCell className='text-2xl font-bold' colSpan={5}>
               Total
             </TableCell>
-            <TableCell className='text-right'>
+            <TableCell className='text-right text-2xl font-bold'>
               80
             </TableCell>
           </TableRow>
