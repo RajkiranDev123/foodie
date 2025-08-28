@@ -72,7 +72,7 @@ const Navbar = () => {
               {cart.length > 0 && (
                 <Button
                   size={"icon"}
-                  className="absolute -inset-y-3 left-2 text-xs rounded-full w-4 h-4 bg-red-500 hover:bg-red-500"
+                  className="absolute inset-y-3 left-2 text-xs rounded-full w-4 h-4 bg-red-500 hover:bg-red-500"
                 >
                   {cart.length}
                 </Button>
@@ -122,6 +122,7 @@ const MobileNavbar = () => {
   let loading = false
   return (
     <Sheet>
+
       <SheetTrigger asChild>
         <Button
           size={"icon"}
@@ -131,9 +132,11 @@ const MobileNavbar = () => {
           <Menu size={"18"} />
         </Button>
       </SheetTrigger>
+
       <SheetContent className="flex flex-col">
+
         <SheetHeader className="flex flex-row items-center justify-between mt-2">
-          <SheetTitle>PatelEats</SheetTitle>
+          <SheetTitle>Foodie Corner</SheetTitle>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="icon">
@@ -148,7 +151,9 @@ const MobileNavbar = () => {
             </DropdownMenuContent>
           </DropdownMenu>
         </SheetHeader>
+
         {/* <Separator className="my-2" /> */}
+
         <SheetDescription className="flex-1">
           <Link
             to="/profile"
@@ -157,6 +162,7 @@ const MobileNavbar = () => {
             <User />
             <span>Profile</span>
           </Link>
+
           <Link
             to="/order/status"
             className="flex items-center gap-4 hover:bg-gray-200 px-3 py-2 rounded-lg cursor-pointer hover:text-gray-900 font-medium"
@@ -164,6 +170,7 @@ const MobileNavbar = () => {
             <HandPlatter />
             <span>Order</span>
           </Link>
+
           <Link
             to="/cart"
             className="flex items-center gap-4 hover:bg-gray-200 px-3 py-2 rounded-lg cursor-pointer hover:text-gray-900 font-medium"
@@ -171,6 +178,7 @@ const MobileNavbar = () => {
             <ShoppingCart />
             <span>Cart (0)</span>
           </Link>
+          
           {user?.admin && (
             <>
               <Link
@@ -197,13 +205,14 @@ const MobileNavbar = () => {
             </>
           )}
         </SheetDescription>
+
         <SheetFooter className="flex flex-col gap-4">
           <div className="flex flex-row items-center gap-2">
             {/* <Avatar>
               <AvatarImage src={user?.profilePicture} />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar> */}
-            <h1 className="font-bold">Patel Mernstack</h1>
+            <h1 className="font-bold">Foodie Corner</h1>
           </div>
           <SheetClose asChild>
             {loading ? (
@@ -221,6 +230,7 @@ const MobileNavbar = () => {
             )}
           </SheetClose>
         </SheetFooter>
+
       </SheetContent>
     </Sheet>
   );
