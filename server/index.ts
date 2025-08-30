@@ -1,12 +1,12 @@
 
 import express from "express";
 import dotenv from "dotenv";
-import connectDB from "./db/connectDB.ts"
+import connectDB from "./db/connectDB"
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-// import userRoute from "./routes/user.route";
-// import restaurantRoute from "./routes/restaurant.route";
+import userRoute from "./routes/user.routes";
+import restaurantRoute from "./routes/restaurant.routes";
 // import menuRoute from "./routes/menu.route";
 // import orderRoute from "./routes/order.route";
 import path from "path";
@@ -31,8 +31,8 @@ const corsOptions = {
 }
 app.use(cors(corsOptions));
 
-// app.use("/api/v1/user", userRoute);
-// app.use("/api/v1/restaurant", restaurantRoute);
+app.use("/api/v1/user", userRoute);
+app.use("/api/v1/restaurant", restaurantRoute);
 // app.use("/api/v1/menu", menuRoute);
 // app.use("/api/v1/order", orderRoute);
 

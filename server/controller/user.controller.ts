@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import { User } from "../models/user.model.ts";
+import { User } from "../models/user.model";
 import bcrypt from "bcryptjs";
 import crypto from "crypto";
-import cloudinary from "../utils/cloudinary.ts";
-import { generateVerificationCode } from "../utils/generateVerificationCode.ts";
-import { generateToken } from "../utils/generateToken.ts";
-import { sendPasswordResetEmail, sendResetSuccessEmail, sendVerificationEmail, sendWelcomeEmail } from "../mail/email.ts";
+import cloudinary from "../utils/cloudinary";
+import { generateVerificationCode } from "../utils/generateVerificationCode";
+import { generateToken } from "../utils/generateToken";
+import { sendPasswordResetEmail, sendResetSuccessEmail, sendVerificationEmail, sendWelcomeEmail } from "../mail/email";
 
 export const signup = async (req: Request, res: Response) => {
     try {
