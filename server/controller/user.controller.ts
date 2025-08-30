@@ -61,7 +61,7 @@ export const login = async (req: Request, res: Response) => {
                 message: "Incorrect email or password"
             });
         }
-        generateToken(res, user);
+        let token = generateToken(res, user);
         user.lastLogin = new Date();
         await user.save();
 
@@ -70,7 +70,8 @@ export const login = async (req: Request, res: Response) => {
         return res.status(200).json({
             success: true,
             message: `Welcome back ${user.fullname}`,
-            user: userWithoutPassword
+            user: userWithoutPassword,
+            token:token
         });
     } catch (error) {
         console.log(error);
