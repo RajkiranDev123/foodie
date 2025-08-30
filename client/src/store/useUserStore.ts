@@ -4,7 +4,8 @@ import axios from "axios";
 import { LoginInputState, SignupInputState } from "@/schema/userSchema";
 import { toast } from "sonner";
 
-const API_END_POINT = "http://localhost:3000/api/v1/user"
+const API_END_POINT = `${import.meta.env.VITE_BASE_URL}/api/v1/user`;
+
 // axios.defaults.withCredentials = true;
 
 type User = {
@@ -43,7 +44,7 @@ export const useUserStore = create<UserState>()(persist((set) => ({
     signup: async (input: SignupInputState) => {
         try {
             set({ loading: true });
-         
+
             const response = await axios.post(`${API_END_POINT}/signup`, input, {
                 headers: {
                     'Content-Type': 'application/json'
