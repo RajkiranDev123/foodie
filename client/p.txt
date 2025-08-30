@@ -60,3 +60,5 @@ npm create vite@latest
 
 npm i react-router-dom
 npm i zod
+
+ npm i zustand
