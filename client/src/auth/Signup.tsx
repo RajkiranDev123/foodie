@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 import { SignupInputState, userSignupSchema } from "@/schema/userSchema";
-// import { useUserStore } from "@/store/useUserStore";
+import { useUserStore } from "@/store/useUserStore";
 import { Loader2, LockKeyhole, Mail, PhoneOutgoing, User } from "lucide-react";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -10,6 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 
 const Signup = () => {
+  const { signup, loading } = useUserStore();
   const [input, setInput] = useState<SignupInputState>({
     fullname: "",
     email: "",
@@ -17,8 +18,7 @@ const Signup = () => {
     contact: "",
   });
   const [errors, setErrors] = useState<Partial<SignupInputState>>({});
-  // const {signup, loading} = useUserStore();
-  let loading = false
+
   const navigate = useNavigate();
   const changeEventHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -35,7 +35,7 @@ const Signup = () => {
     }
     // login api implementation start here
     try {
-      // await signup(input);
+      await signup(input);
       // navigate("/verify-email");
     } catch (error) {
       console.log(error);
