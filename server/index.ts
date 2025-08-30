@@ -7,8 +7,8 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import userRoute from "./routes/user.routes";
 import restaurantRoute from "./routes/restaurant.routes";
-// import menuRoute from "./routes/menu.route";
-// import orderRoute from "./routes/order.route";
+import menuRoute from "./routes/menu.routes";
+import orderRoute from "./routes/order.routes";
 import path from "path";
 
 dotenv.config();
@@ -33,8 +33,8 @@ app.use(cors(corsOptions));
 
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/restaurant", restaurantRoute);
-// app.use("/api/v1/menu", menuRoute);
-// app.use("/api/v1/order", orderRoute);
+app.use("/api/v1/menu", menuRoute);
+app.use("/api/v1/order", orderRoute);
 
 app.use(express.static(path.join(DIRNAME, "/client/dist")));
 
