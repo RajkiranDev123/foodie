@@ -18,7 +18,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 const DIRNAME = path.resolve();
-console.log("DIRNAME ==> ",DIRNAME)
+console.log("DIRNAME ==> ", DIRNAME)
 
 // default middleware for any mern project
 app.use(bodyParser.json({ limit: '10mb' }));
@@ -31,7 +31,6 @@ const corsOptions = {
 }
 app.use(cors(corsOptions));
 
-// api
 // app.use("/api/v1/user", userRoute);
 // app.use("/api/v1/restaurant", restaurantRoute);
 // app.use("/api/v1/menu", menuRoute);
