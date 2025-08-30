@@ -23,6 +23,7 @@
     "mailtrap": "^4.2.0",
     "mongoose": "^8.18.0",
     "multer": "^2.0.2",
+    "nodemailer": "^6.10.1",
     "stripe": "^18.5.0"
   },
   "devDependencies": {

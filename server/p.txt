@@ -12,3 +12,4 @@ npm i -D ts-node typescript nodemon @types/node @types/multer @types/multer @typ
   }
 
 
+ npm i nodemailer
