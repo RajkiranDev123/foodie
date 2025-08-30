@@ -1,0 +1,14 @@
+npm init -y
+
+npm i express mongoose bcryptjs jsonwebtoken mailtrap stripe multer dotenv cors cookie-parser cloudinary
+
+npm i -D ts-node typescript nodemon @types/node @types/multer @types/multer @types/express @types/cors @types/cookie-parser
+
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  }
+
+
