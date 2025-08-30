@@ -33,10 +33,10 @@ const Signup = () => {
       setErrors(fieldErrors as Partial<SignupInputState>);
       return;
     }
-    // login api implementation start here
+ 
     try {
       await signup(input);
-      // navigate("/verify-email");
+      navigate("/verify-email");
     } catch (error) {
       console.log(error);
     }

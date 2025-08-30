@@ -2,10 +2,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 import { LoginInputState, userLoginSchema } from "@/schema/userSchema";
-// import { useUserStore } from "@/store/useUserStore";
+import { useUserStore } from "@/store/useUserStore";
 import { Loader2, LockKeyhole, Mail } from "lucide-react";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { boolean } from "zod";
 
 const Login = () => {
     const [input, setInput] = useState<LoginInputState>({
@@ -13,14 +14,15 @@ const Login = () => {
         password: "",
     });
     const [errors, setErrors] = useState<Partial<LoginInputState>>({});
-    //   const { loading, login } = useUserStore();
-    const [loading, setLoading] = useState(false)
+    const { loading, login } = useUserStore();
+
     const navigate = useNavigate();
 
     const changeEventHandler = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setInput({ ...input, [name]: value });
     };
+
     const loginSubmitHandler = async (e: FormEvent) => {
         e.preventDefault();
         const result = userLoginSchema.safeParse(input);
@@ -30,8 +32,10 @@ const Login = () => {
             return;
         }
         try {
-            //   await login(input);
-            //   navigate("/");
+            const success = await login(input);
+            if (success) {
+                navigate("/");
+            }
         } catch (error) {
             console.log(error);
         }

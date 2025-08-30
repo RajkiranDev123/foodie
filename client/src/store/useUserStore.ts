@@ -26,7 +26,7 @@ type UserState = {
     isCheckingAuth: boolean;
     loading: boolean;
     signup: (input: SignupInputState) => Promise<void>;
-    login: (input: LoginInputState) => Promise<void>;
+    login: (input: LoginInputState) => Promise<boolean>;
     verifyEmail: (verificationCode: string) => Promise<void>;
     checkAuthentication: () => Promise<void>;
     logout: () => Promise<void>;
@@ -40,7 +40,7 @@ export const useUserStore = create<UserState>()(persist((set) => ({
     isAuthenticated: false,
     isCheckingAuth: true,
     loading: false,
-    // signup api implementation
+
     signup: async (input: SignupInputState) => {
         try {
             set({ loading: true });
@@ -68,12 +68,19 @@ export const useUserStore = create<UserState>()(persist((set) => ({
                 }
             });
             if (response.data.success) {
-                toast.success(response.data.message);
                 set({ loading: false, user: response.data.user, isAuthenticated: true });
+
+                toast.success(response.data.message);
+                return true
+            } else {
+                toast.error(response.data.message || "Login failed");
+                set({ loading: false });
+                return false; // login failed
             }
         } catch (error: any) {
             toast.error(error.response.data.message);
             set({ loading: false });
+            return false
         }
     },
     verifyEmail: async (verificationCode: string) => {
