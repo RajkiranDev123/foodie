@@ -3,8 +3,9 @@ import { createJSONStorage, persist } from "zustand/middleware";
 import axios from "axios";
 import { LoginInputState, SignupInputState } from "@/schema/userSchema";
 import { toast } from "sonner";
+import axiosInstance from "@/services/axiosIntanceSetup";
 
-const API_END_POINT = `${import.meta.env.VITE_BASE_URL}/api/v1/user`;
+// const API_END_POINT = `${import.meta.env.VITE_BASE_URL}/api/v1/user`;
 
 // axios.defaults.withCredentials = true;
 
@@ -45,7 +46,7 @@ export const useUserStore = create<UserState>()(persist((set) => ({
         try {
             set({ loading: true });
 
-            const response = await axios.post(`${API_END_POINT}/signup`, input, {
+            const response = await axiosInstance.post(`/api/v1/user/signup`, input, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -62,12 +63,13 @@ export const useUserStore = create<UserState>()(persist((set) => ({
     login: async (input: LoginInputState) => {
         try {
             set({ loading: true });
-            const response = await axios.post(`${API_END_POINT}/login`, input, {
+            const response = await axiosInstance.post(`/api/v1/user/login`, input, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
             });
             if (response.data.success) {
+                localStorage.setItem("access_token",response.data.token)
                 set({ loading: false, user: response.data.user, isAuthenticated: true });
 
                 toast.success(response.data.message);
@@ -86,7 +88,7 @@ export const useUserStore = create<UserState>()(persist((set) => ({
     verifyEmail: async (verificationCode: string) => {
         try {
             set({ loading: true });
-            const response = await axios.post(`${API_END_POINT}/verify-email`, { verificationCode }, {
+            const response = await axiosInstance.post(`/api/v1/user/verify-email`, { verificationCode }, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -103,7 +105,7 @@ export const useUserStore = create<UserState>()(persist((set) => ({
     checkAuthentication: async () => {
         try {
             set({ isCheckingAuth: true });
-            const response = await axios.get(`${API_END_POINT}/check-auth`);
+            const response = await axiosInstance.get(`/api/v1/user/check-auth`);
             if (response.data.success) {
                 set({ user: response.data.user, isAuthenticated: true, isCheckingAuth: false });
             }
@@ -114,7 +116,7 @@ export const useUserStore = create<UserState>()(persist((set) => ({
     logout: async () => {
         try {
             set({ loading: true });
-            const response = await axios.post(`${API_END_POINT}/logout`);
+            const response = await axiosInstance.post(`/api/v1/user/logout`);
             if (response.data.success) {
                 toast.success(response.data.message);
                 set({ loading: false, user: null, isAuthenticated: false })
@@ -127,7 +129,7 @@ export const useUserStore = create<UserState>()(persist((set) => ({
     forgotPassword: async (email: string) => {
         try {
             set({ loading: true });
-            const response = await axios.post(`${API_END_POINT}/forgot-password`, { email });
+            const response = await axiosInstance.post(`/api/v1/user/forgot-password`, { email });
             if (response.data.success) {
                 toast.success(response.data.message);
                 set({ loading: false });
@@ -140,7 +142,7 @@ export const useUserStore = create<UserState>()(persist((set) => ({
     resetPassword: async (token: string, newPassword: string) => {
         try {
             set({ loading: true });
-            const response = await axios.post(`${API_END_POINT}/reset-password/${token}`, { newPassword });
+            const response = await axiosInstance.post(`/api/v1/user/reset-password/${token}`, { newPassword });
             if (response.data.success) {
                 toast.success(response.data.message);
                 set({ loading: false });
@@ -152,7 +154,7 @@ export const useUserStore = create<UserState>()(persist((set) => ({
     },
     updateProfile: async (input: any) => {
         try {
-            const response = await axios.put(`${API_END_POINT}/profile/update`, input, {
+            const response = await axiosInstance.put(`/api/v1/user/profile/update`, input, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
