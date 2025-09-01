@@ -1,13 +1,11 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
-import axios from "axios";
+
 import { LoginInputState, SignupInputState } from "@/schema/userSchema";
 import { toast } from "sonner";
 import axiosInstance from "@/services/axiosIntanceSetup";
 
-// const API_END_POINT = `${import.meta.env.VITE_BASE_URL}/api/v1/user`;
 
-// axios.defaults.withCredentials = true;
 
 type User = {
     fullname: string;
@@ -69,7 +67,7 @@ export const useUserStore = create<UserState>()(persist((set) => ({
                 }
             });
             if (response.data.success) {
-                localStorage.setItem("access_token",response.data.token)
+                localStorage.setItem("access_token", response.data.token)
                 set({ loading: false, user: response.data.user, isAuthenticated: true });
 
                 toast.success(response.data.message);
@@ -118,6 +116,7 @@ export const useUserStore = create<UserState>()(persist((set) => ({
             set({ loading: true });
             const response = await axiosInstance.post(`/api/v1/user/logout`);
             if (response.data.success) {
+                localStorage.clear()
                 toast.success(response.data.message);
                 set({ loading: false, user: null, isAuthenticated: false })
             }

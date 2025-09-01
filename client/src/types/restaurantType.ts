@@ -1,4 +1,4 @@
-// import { Orders } from "./orderType";
+import { Orders } from "./orderType";
 
 export type MenuItem = {
     _id: string;
@@ -29,7 +29,7 @@ export type RestaurantState = {
     searchedRestaurant: SearchedRestaurant | null;
     appliedFilter:string[];
     singleRestaurant: Restaurant | null,
-    // restaurantOrder:Orders[],
+    restaurantOrder:Orders[],
     createRestaurant: (formData: FormData) => Promise<void>;
     getRestaurant: () => Promise<void>;
     updateRestaurant: (formData: FormData) => Promise<void>;

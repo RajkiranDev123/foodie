@@ -6,19 +6,17 @@ import { HandPlatter, Loader2, Menu, Moon, PackageCheck, ShoppingCart, SquareMen
 // import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger, } from "./ui/sheet";
 // import { Separator } from "./ui/separator";
-// import { useUserStore } from "@/store/useUserStore";
+import { useUserStore } from "@/store/useUserStore";
 // import { useCartStore } from "@/store/useCartStore";
 // import { useThemeStore } from "@/store/useThemeStore";
 
 const Navbar = () => {
-  // const { user, loading, logout } = useUserStore();
+  const { user, loading, logout } = useUserStore();
   // const { cart } = useCartStore();
   // const {setTheme} = useThemeStore();
-  let user = {
-    admin: ""
-  }
+
   let cart = []
-  let loading = false
+
 
   return (
     <div className="max-w-7xl mx-auto">
@@ -32,7 +30,7 @@ const Navbar = () => {
             <Link to="/profile">Profile</Link>
             <Link to="/order/status">Order</Link>
 
-            {/* {user?.admin && ( */}
+            {user?.admin && (
               <Menubar>
                 <MenubarMenu>
                   <MenubarTrigger>Dashboard</MenubarTrigger>
@@ -49,7 +47,7 @@ const Navbar = () => {
                   </MenubarContent>
                 </MenubarMenu>
               </Menubar>
-            {/* )} */}
+            )}
           </div>
           <div className="flex items-center gap-4">
             <div>
@@ -92,8 +90,8 @@ const Navbar = () => {
                 </Button>
               ) : (
                 <Button
-                  // onClick={logout}
-                  className="bg-orange hover:bg-hoverOrange"
+                  onClick={logout}
+                  className="bg-blue-700 hover:bg-blue-600"
                 >
                   Logout
                 </Button>
@@ -113,13 +111,11 @@ const Navbar = () => {
 export default Navbar;
 
 const MobileNavbar = () => {
-  // const { user, logout, loading } = useUserStore();
+  const { user, logout, loading } = useUserStore();
   // const {setTheme} = useThemeStore();
-  let user = {
-    admin: ""
-  }
+
   let cart = []
-  let loading = false
+
   return (
     <Sheet>
 
@@ -178,8 +174,8 @@ const MobileNavbar = () => {
             <ShoppingCart />
             <span>Cart (0)</span>
           </Link>
-          
-          {/* {user?.admin && ( */}
+
+          {user?.admin && (
             <>
               <Link
                 to="/admin/menu"
@@ -203,7 +199,7 @@ const MobileNavbar = () => {
                 <span>Restaurant Orders</span>
               </Link>
             </>
-          {/* )} */}
+          )}
         </SheetDescription>
 
         <SheetFooter className="flex flex-col gap-4">
@@ -222,8 +218,8 @@ const MobileNavbar = () => {
               </Button>
             ) : (
               <Button
-                // onClick={logout}
-                className="bg-orange hover:bg-hoverOrange"
+                onClick={logout}
+                className="bg-blue-700 hover:bg-blue-600"
               >
                 Logout
               </Button>

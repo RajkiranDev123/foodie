@@ -36,7 +36,7 @@ const VerifyEmail = () => {
   };
   const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (otp[0]=="") {
+    if (otp[0] == "") {
       toast.error("Otp cant be empty!");
       return
     }
