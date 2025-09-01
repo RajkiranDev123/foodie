@@ -60,11 +60,11 @@ const Restaurant = () => {
         <div className='max-w-6xl mx-auto my-10'>
             <div>
                 <div>
-                    <h1 className='font-extrabold text-2xl mb-5'>Add Restaurant</h1>
+                    <h1 className='font-extrabold text-2xl mb-5 text-gray-700'>Add Restaurant</h1>
                     <form onSubmit={submitHandler}>
                         <div className='md:grid grid-cols-2 gap-6 space-y-2 md:space-y-0'>
 
-                            <div>
+                            <div className='space-y-1'>
                                 <Label>Restaurant Name</Label>
                                 <Input value={input.restaurantName} onChange={changeEventHandler} type="text" name='restaurantName' placeholder='Restaurant Name' />
                                 {errors && (
@@ -74,7 +74,7 @@ const Restaurant = () => {
                                 )}
                             </div>
 
-                            <div>
+                              <div className='space-y-1'>
                                 <Label>City</Label>
                                 <Input value={input.city} onChange={changeEventHandler} type="text" name='city' placeholder='city' />
                                 {errors && (
@@ -84,7 +84,7 @@ const Restaurant = () => {
                                 )}
                             </div>
 
-                            <div>
+                              <div className='space-y-1'>
                                 <Label>Country</Label>
                                 <Input value={input.country} onChange={changeEventHandler} type="text" name='country' placeholder='country' />
                                 {errors && (
@@ -94,7 +94,7 @@ const Restaurant = () => {
                                 )}
                             </div>
 
-                            <div>
+                             <div className='space-y-1'>
                                 <Label>Delivery Time</Label>
                                 <Input value={input.deliveryTime} onChange={changeEventHandler} type="number" name='deliveryTime' placeholder='Delivery Time' />
                                 {errors && (
@@ -104,7 +104,7 @@ const Restaurant = () => {
                                 )}
                             </div>
 
-                            <div>
+                             <div className='space-y-1'>
                                 <Label>Cusines</Label>
                                 <Input value={input.cuisines}
                                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInput({ ...input, cuisines: e.target.value?.split(",") })}
@@ -116,7 +116,7 @@ const Restaurant = () => {
                                 )}
                             </div>
 
-                            <div>
+                             <div className='space-y-1'>
                                 <Label>Upload Restaurant Banner</Label>
                                 <Input onChange={(e) =>
                                     setInput({
