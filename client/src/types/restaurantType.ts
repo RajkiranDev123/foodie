@@ -31,7 +31,7 @@ export type RestaurantState = {
     singleRestaurant: Restaurant | null,
     restaurantOrder:Orders[],
     createRestaurant: (formData: FormData) => Promise<void>;
-    getRestaurant: () => Promise<void>;
+    getRestaurant: () => Promise<void>;//takes no arg and returns Promise<void>
     updateRestaurant: (formData: FormData) => Promise<void>;
     searchRestaurant: (searchText: string, searchQuery: string, selectedCuisines: any) => Promise<void>;
     addMenuToRestaurant: (menu: MenuItem) => void;

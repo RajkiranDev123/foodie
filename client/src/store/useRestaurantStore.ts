@@ -32,6 +32,7 @@ export const useRestaurantStore = create<RestaurantState>()(persist((set, get) =
             set({ loading: false });
         }
     },
+    //on load get restaurant
     getRestaurant: async () => {
         try {
             set({ loading: true });
