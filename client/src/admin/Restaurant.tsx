@@ -4,11 +4,11 @@ import { Label } from '@/components/ui/label'
 import { RestaurantFormSchema, restaurantFromSchema } from '@/schema/restaurantSchema'
 import { useRestaurantStore } from '@/store/useRestaurantStore'
 import { Loader2 } from 'lucide-react'
-import React, { useEffect, useState } from 'react'
+import React, { JSX, useEffect, useState } from 'react'
 
 
-
-const Restaurant = () => {
+type Props = {}
+const Restaurant: React.FC<Props> = (): JSX.Element => {
     const [input, setInput] = useState<RestaurantFormSchema>({
         restaurantName: "",
         city: "",
@@ -94,7 +94,8 @@ const Restaurant = () => {
 
                             <div className='space-y-1'>
                                 <Label>Restaurant Name</Label>
-                                <Input value={input.restaurantName} onChange={changeEventHandler} type="text" name='restaurantName' placeholder='Restaurant Name' />
+                                <Input value={input.restaurantName} onChange={changeEventHandler} type="text" name='restaurantName'
+                                    placeholder='Restaurant Name' />
                                 {errors && (
                                     <span className="text-xs text-red-600 font-medium">
                                         {errors.restaurantName}
@@ -124,7 +125,8 @@ const Restaurant = () => {
 
                             <div className='space-y-1'>
                                 <Label>Delivery Time</Label>
-                                <Input value={input.deliveryTime} onChange={changeEventHandler} type="number" name='deliveryTime' placeholder='Delivery Time' />
+                                <Input value={input.deliveryTime} onChange={changeEventHandler} type="number" name='deliveryTime'
+                                    placeholder='Delivery Time' />
                                 {errors && (
                                     <span className="text-xs text-red-600 font-medium">
                                         {errors.deliveryTime}
