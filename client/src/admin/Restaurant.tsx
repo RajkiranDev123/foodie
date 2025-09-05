@@ -9,6 +9,7 @@ import React, { JSX, useEffect, useState } from 'react'
 
 type Props = {}
 const Restaurant: React.FC<Props> = (): JSX.Element => {
+
     const [input, setInput] = useState<RestaurantFormSchema>({
         restaurantName: "",
         city: "",
@@ -86,97 +87,103 @@ const Restaurant: React.FC<Props> = (): JSX.Element => {
 
     return (
         <div className='max-w-6xl mx-auto my-10'>
-            <div>
-                <div>
-                    <h1 className='font-extrabold text-2xl mb-5 text-gray-700'>Add Restaurant</h1>
-                    <form onSubmit={submitHandler}>
-                        <div className='md:grid grid-cols-2 gap-6 space-y-2 md:space-y-0'>
+            {/* <div> */}
+            {/* <div> */}
+            <h1 className='font-extrabold text-2xl mb-5 text-gray-700'>Add Restaurant</h1>
 
-                            <div className='space-y-1'>
-                                <Label>Restaurant Name</Label>
-                                <Input value={input.restaurantName} onChange={changeEventHandler} type="text" name='restaurantName'
-                                    placeholder='Restaurant Name' />
-                                {errors && (
-                                    <span className="text-xs text-red-600 font-medium">
-                                        {errors.restaurantName}
-                                    </span>
-                                )}
-                            </div>
+            <form onSubmit={submitHandler}>
 
-                            <div className='space-y-1'>
-                                <Label>City</Label>
-                                <Input value={input.city} onChange={changeEventHandler} type="text" name='city' placeholder='city' />
-                                {errors && (
-                                    <span className="text-xs text-red-600 font-medium">
-                                        {errors.city}
-                                    </span>
-                                )}
-                            </div>
+                <div className='md:grid grid-cols-2 gap-6 space-y-2 md:space-y-0'>
 
-                            <div className='space-y-1'>
-                                <Label>Country</Label>
-                                <Input value={input.country} onChange={changeEventHandler} type="text" name='country' placeholder='country' />
-                                {errors && (
-                                    <span className="text-xs text-red-600 font-medium">
-                                        {errors.country}
-                                    </span>
-                                )}
-                            </div>
+                    <div className='space-y-1'>
+                        <Label>Restaurant Name</Label>
+                        <Input value={input.restaurantName} onChange={changeEventHandler} type="text" name='restaurantName'
+                            placeholder='Restaurant Name' />
+                        {errors && (
+                            <span className="text-xs text-red-600 font-medium">
+                                {errors.restaurantName}
+                            </span>
+                        )}
+                    </div>
 
-                            <div className='space-y-1'>
-                                <Label>Delivery Time</Label>
-                                <Input value={input.deliveryTime} onChange={changeEventHandler} type="number" name='deliveryTime'
-                                    placeholder='Delivery Time' />
-                                {errors && (
-                                    <span className="text-xs text-red-600 font-medium">
-                                        {errors.deliveryTime}
-                                    </span>
-                                )}
-                            </div>
+                    <div className='space-y-1'>
+                        <Label>City</Label>
+                        <Input value={input.city} onChange={changeEventHandler} type="text" name='city' placeholder='city' />
+                        {errors && (
+                            <span className="text-xs text-red-600 font-medium">
+                                {errors.city}
+                            </span>
+                        )}
+                    </div>
 
-                            <div className='space-y-1'>
-                                <Label>Cusines</Label>
-                                <Input value={input.cuisines}
-                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInput({ ...input, cuisines: e.target.value?.split(",") })}
-                                    type="text" name='cuisines' placeholder='e.g. momo,briyani' />
-                                {errors && (
-                                    <span className="text-xs text-red-600 font-medium">
-                                        {errors.cuisines}
-                                    </span>
-                                )}
-                            </div>
+                    <div className='space-y-1'>
+                        <Label>Country</Label>
+                        <Input value={input.country} onChange={changeEventHandler} type="text" name='country' placeholder='country' />
+                        {errors && (
+                            <span className="text-xs text-red-600 font-medium">
+                                {errors.country}
+                            </span>
+                        )}
+                    </div>
 
-                            <div className='space-y-1'>
-                                <Label>Upload Restaurant Banner</Label>
-                                <Input onChange={(e) =>
-                                    setInput({
-                                        ...input,
-                                        imageFile: e.target.files?.[0] || undefined,
-                                    })
-                                }
-                                    type="file" accept='image/*' name='imageFile' />
-                                {errors && (
-                                    <span className="text-xs text-red-600 font-medium">
-                                        {errors.imageFile?.name}
-                                    </span>
-                                )}
-                            </div>
+                    <div className='space-y-1'>
+                        <Label>Delivery Time</Label>
+                        <Input value={input.deliveryTime} onChange={changeEventHandler} type="number" name='deliveryTime'
+                            placeholder='Delivery Time' />
+                        {errors && (
+                            <span className="text-xs text-red-600 font-medium">
+                                {errors.deliveryTime}
+                            </span>
+                        )}
+                    </div>
 
-                        </div>
-                        <div className='my-5 w-full'>
-                            {
-                                loading ? (<Button disabled className='bg-blue-700 hover:bg-blue-600'>
-                                    <Loader2 className='mr-2 h-4 w-4 animate-spin' /> wait...
-                                </Button>
-                                ) : <Button className='bg-blue-700 hover:bg-blue-600'>
-                                    {restaurant ? "Update" : "Add Restaurant"}
-                                </Button>
-                            }
+                    <div className='space-y-1'>
+                        <Label>Cusines</Label>
+                        <Input value={input.cuisines}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInput({ ...input, cuisines: e.target.value?.split(",") })}
+                            type="text" name='cuisines' placeholder='e.g. momo,briyani' />
+                        {errors && (
+                            <span className="text-xs text-red-600 font-medium">
+                                {errors.cuisines}
+                            </span>
+                        )}
+                    </div>
 
-                        </div>
-                    </form>
+                    <div className='space-y-1'>
+                        <Label>Upload Restaurant Banner</Label>
+                        <Input onChange={(e) =>
+                            setInput({
+                                ...input,
+                                imageFile: e.target.files?.[0] || undefined,
+                            })
+                        }
+                            type="file" accept='image/*' name='imageFile' />
+                        {errors && (
+                            <span className="text-xs text-red-600 font-medium">
+                                {errors.imageFile?.name}
+                            </span>
+                        )}
+                    </div>
+
                 </div>
-            </div>
+
+                {/* buttons */}
+                <div className='my-5 w-full'>
+                    {
+                        loading ? (<Button disabled className='bg-blue-700 hover:bg-blue-600'>
+                            <Loader2 className='mr-2 h-4 w-4 animate-spin' /> wait...
+                        </Button>
+                        ) : <Button className='bg-blue-700 hover:bg-blue-600'>
+                            {restaurant ? "Update" : "Add Restaurant"}
+                        </Button>
+                    }
+                </div>
+                {/* buttons */}
+
+            </form>
+
+            {/* </div> */}
+            {/* </div> */}
 
         </div>
     )
